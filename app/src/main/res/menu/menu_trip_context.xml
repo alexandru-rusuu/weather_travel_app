@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Context menu shown on a long press on a trip. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/trip_open"
+        android:title="@string/action_open" />
+    <item
+        android:id="@+id/trip_share"
+        android:title="@string/action_share" />
+    <item
+        android:id="@+id/trip_delete"
+        android:title="@string/action_delete" />
+</menu>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sky blue palette (light theme). -->
+    <color name="md_primary">#1F5FAE</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#D6E3FF</color>
+    <color name="md_on_primary_container">#001B3E</color>
+    <color name="md_secondary">#8A5000</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#FFDCBE</color>
+    <color name="md_on_secondary_container">#2C1600</color>
+    <color name="md_surface">#F9F9FF</color>
+    <color name="md_on_surface">#191C20</color>
+
+    <!-- Dark theme. -->
+    <color name="md_primary_dark">#A9C7FF</color>
+    <color name="md_on_primary_dark">#003063</color>
+    <color name="md_primary_container_dark">#00468C</color>
+    <color name="md_on_primary_container_dark">#D6E3FF</color>
+    <color name="md_secondary_dark">#FFB870</color>
+    <color name="md_on_secondary_dark">#4A2800</color>
+    <color name="md_secondary_container_dark">#693C00</color>
+    <color name="md_on_secondary_container_dark">#FFDCBE</color>
+    <color name="md_surface_dark">#111318</color>
+    <color name="md_on_surface_dark">#E2E2E9</color>
+
+    <color name="ic_launcher_background">#1F5FAE</color>
+</resources>

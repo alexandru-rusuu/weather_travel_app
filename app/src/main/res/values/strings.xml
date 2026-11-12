@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The app is in Romanian; tools:locale tells lint not to spell-check it as English. -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="ro">
+    <string name="app_name">WeatherWear</string>
+
+    <!-- Login -->
+    <string name="login_hero_emoji" translatable="false">🧥☀️</string>
+    <string name="login_tagline">Vremea de azi și ce să porți.\nBagajul potrivit pentru fiecare călătorie.</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Parolă</string>
+    <string name="hint_confirm_password">Confirmă parola</string>
+    <string name="password_helper">Cel puțin 6 caractere, cu litere și cifre</string>
+    <string name="login_forgot_password">Ai uitat parola?</string>
+    <string name="action_login">Autentificare</string>
+    <string name="action_register">Creează cont</string>
+    <string name="login_or">sau</string>
+    <string name="action_google">Continuă cu Google</string>
+    <string name="login_no_account">Nu ai cont? Înregistrează-te</string>
+    <string name="login_have_account">Ai deja cont? Autentifică-te</string>
+    <string name="password_reset_sent">Ți-am trimis pe email un link pentru resetarea parolei.</string>
+
+    <!-- Errors -->
+    <string name="error_required">Câmp obligatoriu</string>
+    <string name="error_invalid_email">Adresa de email nu este validă</string>
+    <string name="error_password_too_short">Parola trebuie să aibă cel puțin 6 caractere</string>
+    <string name="error_password_weak">Parola trebuie să conțină și litere, și cifre</string>
+    <string name="error_passwords_differ">Parolele nu coincid</string>
+    <string name="error_auth_no_account">Nu există niciun cont cu acest email</string>
+    <string name="error_auth_wrong_credentials">Email sau parolă greșită</string>
+    <string name="error_auth_account_exists">Există deja un cont cu acest email</string>
+    <string name="error_too_many_requests">Prea multe încercări. Mai încearcă peste câteva minute.</string>
+    <string name="error_no_internet">Nu există conexiune la internet</string>
+    <string name="error_cloud">Datele nu au putut fi sincronizate. Încearcă din nou.</string>
+    <string name="error_cloud_permission">Nu ai acces la aceste date (verifică regulile Firestore).</string>
+    <string name="error_weather_service">Serviciul meteo nu răspunde momentan. Încearcă din nou.</string>
+    <string name="error_generic">A apărut o eroare neașteptată. Încearcă din nou.</string>
+    <string name="error_firebase_not_configured">Firebase nu este configurat: lipsește fișierul app/google-services.json. Urmează pașii din README.</string>
+    <string name="error_google_not_configured">Autentificarea cu Google nu este activată în proiectul Firebase.</string>
+    <string name="error_google_failed">Autentificarea cu Google nu a reușit. Încearcă din nou.</string>
+    <string name="error_google_no_account">Nu există niciun cont Google pe acest dispozitiv.</string>
+    <string name="error_city_not_found">Nu am găsit niciun oraș cu acest nume</string>
+    <string name="error_location_unavailable">Nu am putut afla unde ești. Caută un oraș cu 🔍 din bara de sus.</string>
+    <string name="error_location_disabled">Locația este oprită din setările telefonului</string>
+    <string name="error_dates_past">Călătoria nu poate începe în trecut</string>
+    <string name="error_trip_too_long">O călătorie poate avea cel mult 30 de zile</string>
+    <string name="error_choose_destination">Caută și alege o destinație</string>
+    <string name="error_choose_dates">Alege perioada călătoriei</string>
+    <string name="error_forecast_for_trip">Prognoza nu a putut fi încărcată; lista va fi una generală.</string>
+    <string name="error_trip_missing">Această călătorie nu mai există.</string>
+    <string name="error_notification_permission">Fără permisiunea de notificări nu îți putem trimite ținuta zilei.</string>
+
+    <!-- Weather (WMO codes) -->
+    <string name="wmo_clear">Senin</string>
+    <string name="wmo_mainly_clear">Predominant senin</string>
+    <string name="wmo_partly_cloudy">Parțial noros</string>
+    <string name="wmo_overcast">Înnorat</string>
+    <string name="wmo_fog">Ceață</string>
+    <string name="wmo_drizzle">Burniță</string>
+    <string name="wmo_freezing_drizzle">Burniță care îngheață</string>
+    <string name="wmo_rain">Ploaie</string>
+    <string name="wmo_freezing_rain">Ploaie care îngheață</string>
+    <string name="wmo_snow">Ninsoare</string>
+    <string name="wmo_showers">Averse de ploaie</string>
+    <string name="wmo_snow_showers">Averse de ninsoare</string>
+    <string name="wmo_thunderstorm">Furtună</string>
+    <string name="wmo_thunderstorm_hail">Furtună cu grindină</string>
+    <string name="wmo_unknown">Vreme necunoscută</string>
+
+    <!-- Main screen -->
+    <string name="empty_emoji" translatable="false">🗺️</string>
+    <string name="empty_no_place">Află ce să porți azi: folosește locația ta sau caută un oraș cu 🔍.</string>
+    <string name="action_use_location">Folosește locația mea</string>
+    <string name="action_retry">Încearcă din nou</string>
+    <string name="place_label">📍 %1$s</string>
+    <string name="my_location">Locația mea</string>
+    <string name="current_details">Resimțită %1$s · Umiditate %2$d%% · Vânt %3$d km/h</string>
+    <string name="today_range">Max %1$s · Min %2$s · Precipitații %3$d%%</string>
+    <string name="outfit_title">👕 Ce să porți azi</string>
+    <string name="outfit_loading">Mă gândesc la ținuta potrivită…</string>
+    <string name="outfit_none">Nu avem încă o sugestie pentru azi.</string>
+    <string name="outfit_ai_failed">Asistentul AI nu a răspuns, așa că sugestia vine din regulile aplicației.</string>
+    <string name="tip_label">💡 %1$s</string>
+    <string name="source_ai">✨ Gemini</string>
+    <string name="source_rules">📏 Reguli</string>
+    <string name="forecast_title">Următoarele zile</string>
+    <string name="main_hint">Atinge o zi pentru detalii · ține apăsat cardul de sus ca să distribui · scutură telefonul ca să actualizezi</string>
+    <string name="precipitation_percent">💧 %1$d%%</string>
+    <string name="cd_forecast_day">%1$s: %2$s, maxim %3$s, minim %4$s</string>
+    <string name="shake_refreshing">Actualizez prognoza…</string>
+    <string name="day_details">%1$s %2$s\nMax %3$s · Min %4$s\nPrecipitații %5$d%% · Vânt %6$d km/h · UV %7$d\n\n%8$s\n\n%9$s</string>
+    <string name="share_today">Vremea azi în %1$s: max %2$s, min %3$s.\n%4$s\nCe să porți: %5$s\n— trimis din WeatherWear</string>
+    <string name="share_title">Distribuie prin</string>
+    <string name="choose_city_title">Care dintre ele?</string>
+    <string name="search_hint">Caută un oraș</string>
+    <string name="action_plan_trip">Planifică o călătorie</string>
+
+    <!-- Menu -->
+    <string name="menu_search">Caută</string>
+    <string name="menu_my_location">Locația mea</string>
+    <string name="menu_trips">Călătoriile mele</string>
+    <string name="menu_settings">Setări</string>
+    <string name="menu_about">Despre aplicație</string>
+    <string name="menu_logout">Deconectare</string>
+    <string name="logout_title">Te deconectezi?</string>
+    <string name="logout_message">Călătoriile tale rămân salvate în cont și le regăsești la următoarea autentificare.</string>
+    <string name="about_text">WeatherWear îți spune ce să porți în funcție de vreme și îți face bagajul pentru călătorii.\n\nDate meteo: Open-Meteo.com (CC BY 4.0).\nSugestii: Google Gemini, cu reguli proprii când AI-ul nu e disponibil.\nConturi și date: Firebase.</string>
+
+    <!-- Trips -->
+    <string name="trips_subtitle">Ține apăsat pe o călătorie pentru opțiuni</string>
+    <string name="trips_empty_emoji" translatable="false">🧳</string>
+    <string name="trips_empty">Nu ai nicio călătorie salvată.\nApasă „Călătorie nouă” ca să îți facem bagajul.</string>
+    <string name="action_new_trip">Călătorie nouă</string>
+    <string name="trip_dates_line">%1$s · %2$s · %3$s</string>
+    <string name="packed_progress">%1$d din %2$d lucruri în bagaj</string>
+    <string name="trip_deleted">Ai șters călătoria în %1$s</string>
+    <string name="action_undo">Anulează</string>
+    <string name="action_open">Deschide</string>
+    <string name="action_share">Distribuie</string>
+    <string name="action_delete">Șterge</string>
+    <string name="action_edit">Editează</string>
+    <string name="delete_trip_title">Ștergi călătoria?</string>
+    <string name="delete_trip_message">Călătoria în %1$s și lista ei de bagaj vor fi șterse.</string>
+    <string name="purpose_leisure">Vacanță</string>
+    <string name="purpose_city_break">City break</string>
+    <string name="purpose_mountain">Munte</string>
+    <string name="purpose_business">Afaceri</string>
+
+    <plurals name="day_count">
+        <item quantity="one">%d zi</item>
+        <item quantity="few">%d zile</item>
+        <item quantity="other">%d de zile</item>
+    </plurals>
+
+    <!-- New trip -->
+    <string name="new_trip_title">Călătorie nouă</string>
+    <string name="new_trip_step_where">1. Unde mergi?</string>
+    <string name="hint_destination">Destinație</string>
+    <string name="destination_helper">Scrie orașul și apasă pe lupă</string>
+    <string name="selected_city">✓ %1$s</string>
+    <string name="new_trip_step_when">2. Când?</string>
+    <string name="action_choose_dates">Alege perioada</string>
+    <string name="dates_selected">%1$s · %2$s</string>
+    <string name="new_trip_step_why">3. Ce fel de călătorie?</string>
+    <string name="purpose_leisure_chip">🏖️ Vacanță</string>
+    <string name="purpose_city_break_chip">🏙️ City break</string>
+    <string name="purpose_mountain_chip">🏔️ Munte</string>
+    <string name="purpose_business_chip">💼 Afaceri</string>
+    <string name="action_generate">✨ Generează lista de bagaj</string>
+    <string name="generating">Pregătesc lista…</string>
+    <string name="proposed_list">Lista propusă</string>
+    <string name="action_save_trip">Salvează călătoria</string>
+    <string name="trip_saved">Călătoria a fost salvată</string>
+
+    <!-- Trip details -->
+    <string name="trip_headline">%1$s %2$s</string>
+    <string name="trip_source_ai">✨ Listă generată de Gemini</string>
+    <string name="trip_source_rules">📏 Listă generată din regulile aplicației</string>
+    <string name="trip_forecast_title">Prognoza pentru călătorie</string>
+    <string name="forecast_not_yet">Prognoza apare cu cel mult 16 zile înainte de plecare.</string>
+    <string name="packing_title">Lista de bagaj</string>
+    <string name="packed_count">%1$d din %2$d</string>
+    <string name="packing_hint">Atinge ca să bifezi · ține apăsat ca să editezi sau să ștergi</string>
+    <string name="packing_empty">Lista e goală. Adaugă ce ai nevoie cu butonul +.</string>
+    <string name="action_add_item">Adaugă în bagaj</string>
+    <string name="action_edit_item">Modifică</string>
+    <string name="action_uncheck_all">Debifează tot</string>
+    <string name="action_delete_trip">Șterge călătoria</string>
+    <string name="hint_item_name">Ce iei cu tine?</string>
+    <string name="hint_item_category">Categorie</string>
+    <string name="action_save">Salvează</string>
+    <string name="action_cancel">Renunță</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Settings -->
+    <string name="settings_section_display">Afișare</string>
+    <string name="settings_fahrenheit">Temperaturi în grade Fahrenheit</string>
+    <string name="settings_section_notifications">Notificări</string>
+    <string name="settings_daily_notification">Ținuta zilei, în fiecare dimineață</string>
+    <string name="settings_daily_notification_help">În jurul orei 7:30 primești o notificare cu vremea și ce să porți, pentru ultimul oraș pe care l-ai văzut.</string>
+    <string name="notification_scheduled">Gata! Primești ținuta zilei în fiecare dimineață.</string>
+    <string name="settings_section_account">Cont</string>
+    <string name="settings_signed_in_as">Conectat ca %1$s</string>
+    <string name="settings_signed_in_google">Conectat cu Google</string>
+    <string name="settings_ai_on">✨ Sugestii AI: active (Google Gemini)</string>
+    <string name="settings_ai_off">📏 Sugestii AI: oprite (lipsește cheia Gemini), se folosesc regulile aplicației</string>
+    <string name="settings_version">Versiunea %1$s</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Ținuta zilei</string>
+    <string name="notification_channel_description">O notificare dimineața cu vremea și ce să porți</string>
+    <string name="notification_title">Ce porți azi în %1$s</string>
+</resources>
