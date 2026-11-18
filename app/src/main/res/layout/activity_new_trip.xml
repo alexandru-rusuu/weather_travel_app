@@ -65,8 +65,12 @@
                 android:layout_marginTop="4dp"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorPrimary"
+                android:drawablePadding="6dp"
+                android:gravity="center_vertical"
                 android:visibility="gone"
-                tools:text="✓ Barcelona, Catalonia, Spania"
+                app:drawableStartCompat="@drawable/ic_check_circle_small"
+                app:drawableTint="?attr/colorPrimary"
+                tools:text="Barcelona, Catalonia, Spania"
                 tools:visibility="visible" />
 
             <!-- 2. When -->
@@ -121,28 +125,40 @@
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/purpose_leisure_chip" />
+                    android:text="@string/purpose_leisure"
+                    app:chipIcon="@drawable/ic_beach"
+                    app:chipIconTint="?attr/colorOnSurfaceVariant"
+                    app:chipIconVisible="true" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipCityBreak"
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/purpose_city_break_chip" />
+                    android:text="@string/purpose_city_break"
+                    app:chipIcon="@drawable/ic_city"
+                    app:chipIconTint="?attr/colorOnSurfaceVariant"
+                    app:chipIconVisible="true" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipMountain"
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/purpose_mountain_chip" />
+                    android:text="@string/purpose_mountain"
+                    app:chipIcon="@drawable/ic_terrain"
+                    app:chipIconTint="?attr/colorOnSurfaceVariant"
+                    app:chipIconVisible="true" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipBusiness"
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/purpose_business_chip" />
+                    android:text="@string/purpose_business"
+                    app:chipIcon="@drawable/ic_luggage"
+                    app:chipIconTint="?attr/colorOnSurfaceVariant"
+                    app:chipIconVisible="true" />
             </com.google.android.material.chip.ChipGroup>
 
             <com.google.android.material.button.MaterialButton
@@ -150,7 +166,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/action_generate" />
+                android:text="@string/action_generate"
+                app:icon="@drawable/ic_auto_awesome" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progress"
@@ -226,9 +243,14 @@
                         android:id="@+id/resultTip"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_label"
+                        android:drawablePadding="10dp"
+                        android:padding="12dp"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
+                        android:textColor="?attr/colorOnSecondaryContainer"
+                        app:drawableStartCompat="@drawable/ic_lightbulb_small"
+                        app:drawableTint="?attr/colorOnSecondaryContainer" />
 
                     <TextView
                         android:id="@+id/resultOfflineNote"

@@ -40,5 +40,6 @@ fun <T> AppCompatActivity.collectWhenStarted(flow: Flow<T>, action: suspend (T) 
     }
 }
 
+/** Snackbars allow up to 5 lines, so set-up hints are not cut off after two. */
 fun View.snackbar(@StringRes message: Int, length: Int = Snackbar.LENGTH_LONG): Snackbar =
-    Snackbar.make(this, message, length).also { it.show() }
+    Snackbar.make(this, message, length).setTextMaxLines(5).also { it.show() }

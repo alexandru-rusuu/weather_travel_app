@@ -2,6 +2,7 @@ package ro.weatherwear.app.data.repository
 
 import android.util.Log
 import kotlinx.coroutines.CancellationException
+import retrofit2.HttpException
 import ro.weatherwear.app.data.model.CurrentWeather
 import ro.weatherwear.app.data.model.DailyForecast
 import ro.weatherwear.app.data.model.OutfitSuggestion
@@ -78,16 +79,35 @@ class SuggestionRepository(
         }
     }
 
+    /**
+     * Models to try, in order (comma-separated GEMINI_MODEL in local.properties).
+     * Google retires and overloads models from time to time; trying the next one
+     * keeps the AI working without a new app build.
+     */
+    private val models: List<String> = model.split(',').map(String::trim).filter(String::isNotEmpty)
+
     private suspend fun ask(prompt: String): String {
         val request = GeminiRequest(
             contents = listOf(GeminiContent(parts = listOf(GeminiPart(prompt)), role = "user")),
             generationConfig = GenerationConfig(responseMimeType = "application/json", temperature = 0.6),
         )
-        val response = api.generateContent(model, apiKey, request)
-        return GeminiParser.textOf(response) ?: throw InvalidAiResponseException("Gemini returned no text")
+        var lastError: Exception = InvalidAiResponseException("No Gemini model configured")
+        for (candidate in models) {
+            try {
+                val response = api.generateContent(candidate, apiKey, request)
+                return GeminiParser.textOf(response) ?: throw InvalidAiResponseException("Gemini returned no text")
+            } catch (e: HttpException) {
+                // Retired (404), out of quota (429) or overloaded (5xx): try the next model.
+                if (e.code() !in RETRYABLE_HTTP_CODES) throw e
+                Log.w(TAG, "Model $candidate unavailable (HTTP ${e.code()}), trying the next one")
+                lastError = e
+            }
+        }
+        throw lastError
     }
 
     private companion object {
         const val TAG = "SuggestionRepository"
+        val RETRYABLE_HTTP_CODES = setOf(404, 429, 500, 503)
     }
 }

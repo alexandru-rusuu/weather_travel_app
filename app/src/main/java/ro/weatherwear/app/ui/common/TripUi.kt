@@ -1,6 +1,7 @@
 package ro.weatherwear.app.ui.common
 
 import android.content.Context
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import ro.weatherwear.app.R
 import ro.weatherwear.app.data.model.Trip
@@ -15,11 +16,12 @@ object TripUi {
     fun purposeOf(trip: Trip): TripPurpose =
         TripPurpose.entries.firstOrNull { it.name == trip.purpose } ?: TripPurpose.LEISURE
 
-    fun emoji(purpose: TripPurpose): String = when (purpose) {
-        TripPurpose.LEISURE -> "🏖️"
-        TripPurpose.CITY_BREAK -> "🏙️"
-        TripPurpose.MOUNTAIN -> "🏔️"
-        TripPurpose.BUSINESS -> "💼"
+    @DrawableRes
+    fun icon(purpose: TripPurpose): Int = when (purpose) {
+        TripPurpose.LEISURE -> R.drawable.ic_beach
+        TripPurpose.CITY_BREAK -> R.drawable.ic_city
+        TripPurpose.MOUNTAIN -> R.drawable.ic_terrain
+        TripPurpose.BUSINESS -> R.drawable.ic_luggage
     }
 
     @StringRes
@@ -52,7 +54,7 @@ object TripUi {
 
     /** Plain-text packing list, for sharing. */
     fun shareText(trip: Trip): String = buildString {
-        append("🧳 ").append(trip.destination)
+        append(trip.destination)
         val start = parseDate(trip.startDate)
         val end = parseDate(trip.endDate)
         if (start != null && end != null) append(" (").append(dateRange(start, end)).append(")")
@@ -61,7 +63,7 @@ object TripUi {
         appendLine()
         trip.items.groupBy { it.category }.forEach { (category, items) ->
             appendLine(category.ifBlank { "Altele" } + ":")
-            items.forEach { appendLine((if (it.packed) "☑ " else "☐ ") + it.name) }
+            items.forEach { appendLine((if (it.packed) "[x] " else "[ ] ") + it.name) }
             appendLine()
         }
     }.trim()

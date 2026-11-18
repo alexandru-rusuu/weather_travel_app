@@ -25,4 +25,8 @@
     <color name="md_on_surface_dark">#E2E2E9</color>
 
     <color name="ic_launcher_background">#1F5FAE</color>
+
+    <!-- Text on the sky gradient (same in light and dark mode). -->
+    <color name="hero_text">#FFFFFFFF</color>
+    <color name="hero_text_secondary">#D9FFFFFF</color>
 </resources>

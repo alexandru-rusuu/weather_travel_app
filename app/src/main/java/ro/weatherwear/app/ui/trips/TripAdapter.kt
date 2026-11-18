@@ -26,7 +26,7 @@ class TripAdapter(
         fun bind(trip: Trip) = with(binding) {
             val context = root.context
             val purpose = TripUi.purposeOf(trip)
-            tripEmoji.text = TripUi.emoji(purpose)
+            tripIcon.setImageResource(TripUi.icon(purpose))
             tripDestination.text = trip.destination
 
             val start = TripUi.parseDate(trip.startDate)

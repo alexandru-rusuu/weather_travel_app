@@ -80,7 +80,8 @@ class TripDetailActivity : AppCompatActivity() {
 
         supportActionBar?.title = trip.destination
         val purpose = TripUi.purposeOf(trip)
-        tripHeadline.text = getString(R.string.trip_headline, TripUi.emoji(purpose), getString(TripUi.label(purpose)))
+        tripHeadline.setText(TripUi.label(purpose))
+        tripHeadline.setCompoundDrawablesRelativeWithIntrinsicBounds(TripUi.icon(purpose), 0, 0, 0)
         val start = TripUi.parseDate(trip.startDate)
         val end = TripUi.parseDate(trip.endDate)
         tripDates.text = if (start != null && end != null) {
@@ -88,9 +89,11 @@ class TripDetailActivity : AppCompatActivity() {
         } else ""
         tripSummary.text = trip.summary
         tripTip.visibility = if (trip.tip.isBlank()) View.GONE else View.VISIBLE
-        tripTip.text = getString(R.string.tip_label, trip.tip)
-        tripSource.setText(
-            if (trip.source == SuggestionSource.AI.name) R.string.trip_source_ai else R.string.trip_source_rules
+        tripTip.text = trip.tip
+        val fromAi = trip.source == SuggestionSource.AI.name
+        tripSource.setText(if (fromAi) R.string.trip_source_ai else R.string.trip_source_rules)
+        tripSource.setCompoundDrawablesRelativeWithIntrinsicBounds(
+            if (fromAi) R.drawable.ic_auto_awesome_small else R.drawable.ic_rule_small, 0, 0, 0
         )
 
         forecastProgress.visibility = if (state.isForecastLoading) View.VISIBLE else View.GONE

@@ -33,7 +33,7 @@ class ForecastAdapter(
         fun bind(day: DailyForecast) = with(binding) {
             dayName.text = WeatherUi.dayName(day.date)
             dayDate.text = WeatherUi.shortDate(day.date)
-            dayIcon.text = WeatherUi.emoji(day.weatherCode)
+            dayIcon.setImageResource(WeatherUi.icon(day.weatherCode))
             dayMax.text = WeatherUi.temperature(day.tempMax, useFahrenheit)
             dayMin.text = WeatherUi.temperature(day.tempMin, useFahrenheit)
             dayRain.text = root.context.getString(R.string.precipitation_percent, day.precipitationProbability)

@@ -54,6 +54,7 @@ class LoginActivity : AppCompatActivity() {
             binding.primaryButton.isEnabled = false
             binding.googleButton.isEnabled = false
             binding.forgotPassword.isEnabled = false
+            binding.toggleModeButton.isEnabled = false
             return
         }
 

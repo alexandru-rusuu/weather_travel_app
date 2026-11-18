@@ -99,7 +99,7 @@ class NewTripActivity : AppCompatActivity() {
     private fun render(state: NewTripUiState) = with(binding) {
         destinationLayout.error = state.destinationError?.let(::getString)
         selectedCity.visibility = if (state.city != null) View.VISIBLE else View.GONE
-        selectedCity.text = state.city?.let { getString(R.string.selected_city, it.detailedName) }
+        selectedCity.text = state.city?.detailedName
 
         val start = state.startDate
         val end = state.endDate
@@ -120,7 +120,9 @@ class NewTripActivity : AppCompatActivity() {
     private fun renderSuggestion(suggestion: PackingSuggestion?, state: NewTripUiState) = with(binding) {
         resultCard.visibility = if (suggestion != null) View.VISIBLE else View.GONE
         if (suggestion == null) return@with
-        sourceChip.setText(if (suggestion.source == SuggestionSource.AI) R.string.source_ai else R.string.source_rules)
+        val fromAi = suggestion.source == SuggestionSource.AI
+        sourceChip.setText(if (fromAi) R.string.source_ai else R.string.source_rules)
+        sourceChip.setChipIconResource(if (fromAi) R.drawable.ic_auto_awesome else R.drawable.ic_rule)
         resultSummary.text = suggestion.summary
         forecastList.visibility = if (state.forecast.isEmpty()) View.GONE else View.VISIBLE
         forecastAdapter.submitList(state.forecast)
@@ -128,7 +130,7 @@ class NewTripActivity : AppCompatActivity() {
             category + "\n" + items.joinToString("\n") { "• " + it.name }
         }
         resultTip.visibility = if (suggestion.tip.isBlank()) View.GONE else View.VISIBLE
-        resultTip.text = getString(R.string.tip_label, suggestion.tip)
+        resultTip.text = suggestion.tip
         resultOfflineNote.visibility = if (suggestion.aiFailed) View.VISIBLE else View.GONE
     }
 

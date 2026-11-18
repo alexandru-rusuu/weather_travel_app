@@ -49,13 +49,13 @@ Aplicație Android (Kotlin) care îți arată vremea și îți spune **ce să po
 > Dacă adaugi SHA-1 după ce ai descărcat `google-services.json`, descarcă fișierul din nou.
 
 ### 2. Cheia Gemini (gratuită)
-1. Ia o cheie de la [aistudio.google.com/apikey](https://aistudio.google.com/apikey).
+1. Ia o cheie de la [aistudio.google.com/apikey](https://aistudio.google.com/apikey), cu un cont Gmail **personal**, alegând **„Create API key in new project"**. Pe unele conturi de școală sau de firmă, Google refuză nivelul gratuit cu eroarea „free tier is not available for this project".
 2. Scrie-o în **`local.properties`**, în rădăcina proiectului. Fișierul **nu** se urcă pe Git:
    ```
    GEMINI_API_KEY=cheia_ta
-   GEMINI_MODEL=gemini-2.5-flash
+   GEMINI_MODEL=gemini-3.1-flash-lite,gemini-3.5-flash-lite,gemini-2.5-flash
    ```
-   Dacă modelul nu mai e disponibil în free tier, schimbă `GEMINI_MODEL` cu unul din lista din AI Studio.
+   `GEMINI_MODEL` e o listă: aplicația încearcă modelele în ordine și trece la următorul dacă unul a fost retras de Google sau e supraîncărcat.
 
 Fără cheie, aplicația funcționează în continuare, doar că sugestiile vin din reguli (în Setări scrie „Sugestii AI: oprite").
 

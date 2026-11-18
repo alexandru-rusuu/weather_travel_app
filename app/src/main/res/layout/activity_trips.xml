@@ -44,12 +44,14 @@
             android:padding="32dp"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:background="@drawable/bg_circle"
                 android:importantForAccessibility="no"
-                android:text="@string/trips_empty_emoji"
-                android:textSize="56sp" />
+                android:padding="24dp"
+                android:src="@drawable/ic_luggage"
+                app:tint="?attr/colorOnSecondaryContainer" />
 
             <TextView
                 android:id="@+id/emptyText"

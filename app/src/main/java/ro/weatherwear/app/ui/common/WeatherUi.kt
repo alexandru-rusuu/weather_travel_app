@@ -1,5 +1,6 @@
 package ro.weatherwear.app.ui.common
 
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import ro.weatherwear.app.R
 import java.time.LocalDate
@@ -15,18 +16,18 @@ object WeatherUi {
     private val shortDateFormat = DateTimeFormatter.ofPattern("d MMM", romanian)
     private val longDateFormat = DateTimeFormatter.ofPattern("EEEE, d MMMM", romanian)
 
-    /** An emoji for a WMO weather code: readable at any size, no image assets needed. */
-    fun emoji(code: Int, isDay: Boolean = true): String = when (code) {
-        0 -> if (isDay) "☀️" else "🌙"
-        1 -> if (isDay) "🌤️" else "🌙"
-        2 -> "⛅"
-        3 -> "☁️"
-        45, 48 -> "🌫️"
-        51, 53, 55, 56, 57 -> "🌦️"
-        61, 63, 65, 66, 67, 80, 81, 82 -> "🌧️"
-        71, 73, 75, 77, 85, 86 -> "🌨️"
-        95, 96, 99 -> "⛈️"
-        else -> "🌡️"
+    /** The app's own vector icon for a WMO weather code (res/drawable/ic_wx_*). */
+    @DrawableRes
+    fun icon(code: Int, isDay: Boolean = true): Int = when (code) {
+        0 -> if (isDay) R.drawable.ic_wx_clear_day else R.drawable.ic_wx_clear_night
+        1, 2 -> if (isDay) R.drawable.ic_wx_partly_cloudy_day else R.drawable.ic_wx_partly_cloudy_night
+        3 -> R.drawable.ic_wx_cloudy
+        45, 48 -> R.drawable.ic_wx_fog
+        51, 53, 55, 56, 57 -> R.drawable.ic_wx_drizzle
+        61, 63, 65, 66, 67, 80, 81, 82 -> R.drawable.ic_wx_rain
+        71, 73, 75, 77, 85, 86 -> R.drawable.ic_wx_snow
+        95, 96, 99 -> R.drawable.ic_wx_thunderstorm
+        else -> R.drawable.ic_wx_cloudy
     }
 
     @StringRes

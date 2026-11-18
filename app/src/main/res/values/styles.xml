@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.WeatherWear.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
+    <!-- The three stat pills on the main screen's sky card. -->
+    <style name="WeatherWear.HeroStat" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/bg_stat</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingVertical">10dp</item>
+    </style>
+
+    <style name="WeatherWear.HeroStatIcon" parent="">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:importantForAccessibility">no</item>
+        <item name="tint">@color/hero_text</item>
+    </style>
+
+    <style name="WeatherWear.HeroStatValue" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceTitleSmall</item>
+        <item name="android:textColor">@color/hero_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="WeatherWear.HeroStatLabel" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelSmall</item>
+        <item name="android:textColor">@color/hero_text_secondary</item>
+    </style>
+</resources>

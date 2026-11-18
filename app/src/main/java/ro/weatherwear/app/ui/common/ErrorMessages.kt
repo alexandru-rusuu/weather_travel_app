@@ -1,6 +1,7 @@
 package ro.weatherwear.app.ui.common
 
 import androidx.annotation.StringRes
+import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -24,11 +25,26 @@ object ErrorMessages {
         is FirebaseAuthUserCollisionException -> R.string.error_auth_account_exists
         is FirebaseTooManyRequestsException -> R.string.error_too_many_requests
         is FirebaseNetworkException, is IOException -> R.string.error_no_internet
-        is FirebaseFirestoreException ->
-            if (error.code == FirebaseFirestoreException.Code.PERMISSION_DENIED) R.string.error_cloud_permission
-            else R.string.error_cloud
+        is FirebaseFirestoreException -> when {
+            error.code == FirebaseFirestoreException.Code.PERMISSION_DENIED -> R.string.error_cloud_permission
+            // Firestore database not created yet in the Firebase console.
+            error.code == FirebaseFirestoreException.Code.NOT_FOUND -> R.string.error_firestore_not_created
+            else -> R.string.error_cloud
+        }
+        // Authentication (or this sign-in method) is not switched on in the Firebase console.
+        is FirebaseException if error.isAuthNotEnabled() -> R.string.error_auth_not_enabled
         is HttpException -> R.string.error_weather_service
         else -> R.string.error_generic
+    }
+
+    /**
+     * Firebase reports a console set-up problem only in the message text:
+     * CONFIGURATION_NOT_FOUND (Authentication never started) or
+     * OPERATION_NOT_ALLOWED (Email/Password provider switched off).
+     */
+    private fun FirebaseException.isAuthNotEnabled(): Boolean {
+        val text = message.orEmpty()
+        return "CONFIGURATION_NOT_FOUND" in text || "OPERATION_NOT_ALLOWED" in text
     }
 
     @StringRes

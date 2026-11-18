@@ -2,6 +2,7 @@ package ro.weatherwear.app.ui.main
 
 import android.Manifest
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -18,6 +19,7 @@ import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import ro.weatherwear.app.R
@@ -137,27 +139,26 @@ class MainActivity : AppCompatActivity() {
         if (noData) return@with
 
         val f = state.useFahrenheit
-        placeName.text = getString(R.string.place_label, state.place?.name.orEmpty())
+        placeName.text = state.place?.name.orEmpty()
         state.today?.let { today ->
             todayDate.text = WeatherUi.longDate(today.date)
             todayRange.text = getString(
                 R.string.today_range,
                 WeatherUi.temperature(today.tempMax, f),
                 WeatherUi.temperature(today.tempMin, f),
-                today.precipitationProbability,
             )
+            statRainValue.text = getString(R.string.percent_value, today.precipitationProbability)
         }
         val current = state.current
         if (current != null) {
-            currentIcon.text = WeatherUi.emoji(current.weatherCode, current.isDay)
+            // Day sky or night sky behind today's weather.
+            heroCard.setBackgroundResource(if (current.isDay) R.drawable.bg_hero_day else R.drawable.bg_hero_night)
+            currentIcon.setImageResource(WeatherUi.icon(current.weatherCode, current.isDay))
+            currentIcon.contentDescription = getString(WeatherUi.description(current.weatherCode))
             currentTemp.text = WeatherUi.temperature(current.temperature, f)
             currentDescription.setText(WeatherUi.description(current.weatherCode))
-            currentDetails.text = getString(
-                R.string.current_details,
-                WeatherUi.temperature(current.feelsLike, f),
-                current.humidity,
-                current.windSpeed.roundToInt(),
-            )
+            statFeelsValue.text = WeatherUi.temperature(current.feelsLike, f)
+            statWindValue.text = getString(R.string.wind_value, current.windSpeed.roundToInt())
         }
         forecastAdapter.submitList(state.days)
         renderOutfit(state.outfit, state.isOutfitLoading)
@@ -168,24 +169,31 @@ class MainActivity : AppCompatActivity() {
         if (outfit == null) {
             outfitSummary.setText(if (loading) R.string.outfit_loading else R.string.outfit_none)
             outfitItems.removeAllViews()
-            outfitTip.visibility = View.GONE
+            outfitTipRow.visibility = View.GONE
             outfitSource.visibility = View.GONE
             outfitOfflineNote.visibility = View.GONE
             return@with
         }
         outfitSummary.text = outfit.summary
         outfitItems.removeAllViews()
+        val chipColor = ColorStateList.valueOf(
+            MaterialColors.getColor(outfitItems, com.google.android.material.R.attr.colorSecondaryContainer)
+        )
         outfit.items.forEach { item ->
             outfitItems.addView(Chip(this@MainActivity).apply {
                 text = item
                 isClickable = false
                 isCheckable = false
+                chipBackgroundColor = chipColor
+                chipStrokeWidth = 0f
             })
         }
-        outfitTip.visibility = if (outfit.tip.isBlank()) View.GONE else View.VISIBLE
-        outfitTip.text = getString(R.string.tip_label, outfit.tip)
+        outfitTipRow.visibility = if (outfit.tip.isBlank()) View.GONE else View.VISIBLE
+        outfitTip.text = outfit.tip
+        val fromAi = outfit.source == SuggestionSource.AI
         outfitSource.visibility = View.VISIBLE
-        outfitSource.setText(if (outfit.source == SuggestionSource.AI) R.string.source_ai else R.string.source_rules)
+        outfitSource.setText(if (fromAi) R.string.source_ai else R.string.source_rules)
+        outfitSource.setChipIconResource(if (fromAi) R.drawable.ic_auto_awesome else R.drawable.ic_rule)
         outfitOfflineNote.visibility = if (outfit.aiFailed) View.VISIBLE else View.GONE
     }
 
@@ -195,12 +203,13 @@ class MainActivity : AppCompatActivity() {
         val outfit = viewModel.outfitForDay(day)
         val message = getString(
             R.string.day_details,
-            WeatherUi.emoji(day.weatherCode), getString(WeatherUi.description(day.weatherCode)),
+            getString(WeatherUi.description(day.weatherCode)),
             WeatherUi.temperature(day.tempMax, f), WeatherUi.temperature(day.tempMin, f),
             day.precipitationProbability, day.windMax.roundToInt(), day.uvMax.roundToInt(),
             outfit.summary, outfit.items.joinToString("\n• ", prefix = "• "),
         )
         MaterialAlertDialogBuilder(this)
+            .setIcon(WeatherUi.icon(day.weatherCode))
             .setTitle(WeatherUi.longDate(day.date))
             .setMessage(message)
             .setPositiveButton(R.string.action_ok, null)
